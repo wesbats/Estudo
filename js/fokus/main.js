@@ -7,6 +7,9 @@ const botoes = document.querySelectorAll('.app__card-button');
 const displayTimer = document.querySelector('#timer');
 const title = document.querySelector('.app__title');
 const banner = document.querySelector('.app__image');
+const inputMusica = document.querySelector('#alternar-musica');
+const musica = new Audio('/sons/luna-rise-part-one.mp3');
+musica.loop = true;
 
 const duracaoFoco = 1500;
 const duracaoCurto = 300;
@@ -16,6 +19,13 @@ const duracaoLongo = 900;
 focoBt.addEventListener('click', () => alteraContexto('foco'))
 curtoBt.addEventListener('click', () => alteraContexto('descanso-curto'))
 longoBt.addEventListener('click', () => alteraContexto('descanso-longo'))
+inputMusica.addEventListener('change', () => {
+    if (musica.paused) {
+        musica.play();
+    } else {
+        musica.pause();
+    }
+})
 
 // Funcoes
 function alteraContexto(contexto) {
