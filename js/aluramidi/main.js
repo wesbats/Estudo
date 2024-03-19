@@ -6,13 +6,13 @@ listaTeclas.forEach(atribuiSom);
 
 // Funções
 function atribuiSom(botao) {
-  let som = botao.innerHTML.toLowerCase();
-  botao.onclick = () => tocaSom(som);
+  const teclaSom = botao.classList[1];
+  const idAudio = `#som_${teclaSom}`;
+  botao.onclick = () => tocaSom(idAudio);
 }
 
-function tocaSom(som) {
-  idPlayer = "#som_tecla_" + som;
-  player = document.querySelector(idPlayer);
+function tocaSom(idAudio) {
+  let player = document.querySelector(idAudio);
   player.currentTime = 0;
   player.play();
 }
