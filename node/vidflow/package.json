@@ -5,7 +5,7 @@
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "api-local": "json-server --watch backend/videos.json",
+    "api": "json-server --watch backend/videos.json",
     "lint": "eslint ."
   },
   "author": "",
