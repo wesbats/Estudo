@@ -7,6 +7,8 @@
     <title>Bytebank</title>
     <link rel="stylesheet" href="css/app.css" type="text/css" />
     <script src="js/main.js" defer></script>
+    <script src="js/entities/Transaction.js"></script>
+    <script src="js/entities/TypeTransaction.js"></script>
   </head>
   <body>
     <header class="topo container-padding flex">
@@ -53,9 +55,9 @@
                 required
               >
                 <option value="">Selecione o tipo de transação</option>
-                <option value="Depósito">Depósito</option>
-                <option value="Transferência">Transferência</option>
-                <option value="Pagamento de Boleto">Pagamento de Boleto</option>
+                <option value="deposit">Depósito</option>
+                <option value="transfer">Transferência</option>
+                <option value="paymentSlip">Pagamento de Boleto</option>
               </select>
             </div>
             <div class="campo">
