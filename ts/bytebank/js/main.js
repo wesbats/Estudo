@@ -1,87 +1,78 @@
 //variaveis
-let accountBalance = 3000;
-const accountBalanceDisplay = document.querySelector(".saldo-valor .valor");
-const transactionForm = document.querySelector(".block-nova-transacao form");
-
+var accountBalance = 3000;
+var accountBalanceDisplay = document.querySelector(".saldo-valor .valor");
+var transactionForm = document.querySelector(".block-nova-transacao form");
 //inicializador
 updateAccontBalanceDisplay();
-transactionForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  if (!transactionForm) {
-    alert("Erro inesperado, favor recarregar a página.");
-    return;
-  }
-
-  const inputDateTransactionForm = transactionForm.querySelector("#data");
-  const inputTypeTransactionForm =
-    transactionForm.querySelector("#tipoTransacao");
-  const inputValueTransactionForm = transactionForm.querySelector("#valor");
-
-  let dateTransaction = inputDateTransactionForm?.value;
-  let typeTransaction = inputTypeTransactionForm?.value;
-  let valueTransaction = inputValueTransactionForm?.value;
-
-  let listErrors = checkValues();
-
-  if (listErrors.length != 0) {
-    let errors = null;
-    listErrors.forEach(formatErrors);
-
-    let msgErrors = `Favor preencher ${errors} corretamente.`;
-    alert(msgErrors);
-    return;
-
-    function formatErrors(value, index) {
-      if (index == 0) {
-        errors = value;
+transactionForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    if (!transactionForm) {
+        alert("Erro inesperado, favor recarregar a página.");
         return;
-      }
-      if (index + 1 == listErrors.length) {
-        errors += ` e ${value}`;
+    }
+    var inputDateTransactionForm = transactionForm.querySelector("#data");
+    var inputTypeTransactionForm = transactionForm.querySelector("#tipoTransacao");
+    var inputValueTransactionForm = transactionForm.querySelector("#valor");
+    var dateTransaction = new Date(inputDateTransactionForm === null || inputDateTransactionForm === void 0 ? void 0 : inputDateTransactionForm.value);
+    var typeTransaction = inputTypeTransactionForm === null || inputTypeTransactionForm === void 0 ? void 0 : inputTypeTransactionForm.value;
+    var valueTransaction = Number(inputValueTransactionForm === null || inputValueTransactionForm === void 0 ? void 0 : inputValueTransactionForm.value);
+    var listErrors = checkValues();
+    if (listErrors.length != 0) {
+        var errors_1 = "Error";
+        listErrors.forEach(formatErrors);
+        var msgErrors = "Favor preencher ".concat(errors_1, " corretamente.");
+        alert(msgErrors);
         return;
-      }
-      errors += `, ${value}`;
+        function formatErrors(value, index) {
+            if (index == 0) {
+                errors_1 = value;
+                return;
+            }
+            if (index + 1 == listErrors.length) {
+                errors_1 += " e ".concat(value);
+                return;
+            }
+            errors_1 += ", ".concat(value);
+        }
     }
-  }
-
-  switch (typeTransaction) {
-    case "Depósito":
-      accountBalance += Number(valueTransaction);
-      break;
-    case "Transferência":
-      accountBalance -= Number(valueTransaction);
-      break;
-    case "Pagamento de Boleto":
-      accountBalance -= Number(valueTransaction);
-      break;
-  }
-  updateAccontBalanceDisplay();
-
-  const newTransaction = {
-    date: dateTransaction,
-    typeTransaction: typeTransaction,
-    value: valueTransaction,
-  };
-  console.log(newTransaction);
-
-  function checkValues() {
-    let listErrors = [];
-    if (typeTransaction == 0) {
-      listErrors.push("Tipo de transação");
+    switch (typeTransaction) {
+        case "Depósito":
+            accountBalance += valueTransaction;
+            break;
+        case "Transferência":
+            accountBalance -= valueTransaction;
+            break;
+        case "Pagamento de Boleto":
+            accountBalance -= valueTransaction;
+            break;
     }
-    if (valueTransaction == 0) {
-      listErrors.push("Valor");
+    updateAccontBalanceDisplay();
+    var newTransaction = {
+        date: dateTransaction,
+        typeTransaction: typeTransaction,
+        value: valueTransaction,
+    };
+    console.log(newTransaction);
+    function checkValues() {
+        var listErrors = [];
+        if (typeTransaction == "") {
+            listErrors.push("Tipo de transação");
+        }
+        if (valueTransaction == 0) {
+            listErrors.push("Valor");
+        }
+        if (isInvalidDate(dateTransaction)) {
+            listErrors.push("Data");
+        }
+        return listErrors;
     }
-    if (dateTransaction == 0) {
-      listErrors.push("Data");
-    }
-    return listErrors;
-  }
 });
-
 //funcoes
 function updateAccontBalanceDisplay() {
-  if (accountBalance) {
-    accountBalanceDisplay.innerText = `R$ ${accountBalance}`;
-  }
+    if (accountBalance) {
+        accountBalanceDisplay.innerText = "R$ ".concat(accountBalance);
+    }
+}
+function isInvalidDate(dateCheck) {
+    return isNaN(dateCheck.getTime());
 }
