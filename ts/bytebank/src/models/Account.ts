@@ -9,7 +9,10 @@ class AccountBank {
     return this.accountBalance;
   }
 
-  updateAccountBalance(updatedAccountBalance: number) {
-    this.accountBalance = updatedAccountBalance;
+  accountBalanceAdd(amountMoney: number) {
+    this.accountBalance += amountMoney;
+  }
+  accountBalanceRemove(amountMoney: number) {
+    this.accountBalance -= amountMoney;
   }
 }

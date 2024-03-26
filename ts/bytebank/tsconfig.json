@@ -2,7 +2,10 @@
   "compilerOptions": {
     "target": "ES6",
     "outDir": "./dist/js/",
+    "rootDir": "./src/",
     "noEmitOnError": true
   },
-  "include": ["./src/**/*"]
+  "include": [
+    "./src/**/*.ts"
+  ]
 }
