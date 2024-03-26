@@ -1,38 +1,38 @@
 //variaveis
-var accountBalance = 3000;
-var accountBalanceDisplay = document.querySelector(".saldo-valor .valor");
-var transactionForm = document.querySelector(".block-nova-transacao form");
+let accountBalance = 3000;
+const accountBalanceDisplay = document.querySelector(".saldo-valor .valor");
+const transactionForm = document.querySelector(".block-nova-transacao form");
 //inicializador
 updateAccontBalanceDisplay();
-transactionForm.addEventListener("submit", function (event) {
+transactionForm.addEventListener("submit", (event) => {
     event.preventDefault();
     if (!transactionForm) {
         alert("Erro inesperado, favor recarregar a página.");
         return;
     }
-    var inputDateTransactionForm = transactionForm.querySelector("#data");
-    var inputTypeTransactionForm = transactionForm.querySelector("#tipoTransacao");
-    var inputValueTransactionForm = transactionForm.querySelector("#valor");
-    var dateTransaction = new Date(inputDateTransactionForm === null || inputDateTransactionForm === void 0 ? void 0 : inputDateTransactionForm.value);
-    var typeTransaction = inputTypeTransactionForm === null || inputTypeTransactionForm === void 0 ? void 0 : inputTypeTransactionForm.value;
-    var valueTransaction = Number(inputValueTransactionForm === null || inputValueTransactionForm === void 0 ? void 0 : inputValueTransactionForm.value);
-    var listErrors = checkValues();
+    const inputDateTransactionForm = transactionForm.querySelector("#data");
+    const inputTypeTransactionForm = transactionForm.querySelector("#tipoTransacao");
+    const inputValueTransactionForm = transactionForm.querySelector("#valor");
+    let dateTransaction = new Date(inputDateTransactionForm === null || inputDateTransactionForm === void 0 ? void 0 : inputDateTransactionForm.value);
+    let typeTransaction = inputTypeTransactionForm === null || inputTypeTransactionForm === void 0 ? void 0 : inputTypeTransactionForm.value;
+    let valueTransaction = Number(inputValueTransactionForm === null || inputValueTransactionForm === void 0 ? void 0 : inputValueTransactionForm.value);
+    let listErrors = checkValues();
     if (listErrors.length != 0) {
-        var errors_1 = "Error";
+        let errors = "Error";
         listErrors.forEach(formatErrors);
-        var msgErrors = "Favor preencher ".concat(errors_1, " corretamente.");
+        let msgErrors = `Favor preencher ${errors} corretamente.`;
         alert(msgErrors);
         return;
         function formatErrors(value, index) {
             if (index == 0) {
-                errors_1 = value;
+                errors = value;
                 return;
             }
             if (index + 1 == listErrors.length) {
-                errors_1 += " e ".concat(value);
+                errors += ` e ${value}`;
                 return;
             }
-            errors_1 += ", ".concat(value);
+            errors += `, ${value}`;
         }
     }
     switch (typeTransaction) {
@@ -47,14 +47,14 @@ transactionForm.addEventListener("submit", function (event) {
             break;
     }
     updateAccontBalanceDisplay();
-    var newTransaction = {
+    const newTransaction = {
         date: dateTransaction,
         typeTransaction: typeTransaction,
         value: valueTransaction,
     };
     console.log(newTransaction);
     function checkValues() {
-        var listErrors = [];
+        let listErrors = [];
         if (typeTransaction == "") {
             listErrors.push("Tipo de transação");
         }
@@ -70,7 +70,7 @@ transactionForm.addEventListener("submit", function (event) {
 //funcoes
 function updateAccontBalanceDisplay() {
     if (accountBalance) {
-        accountBalanceDisplay.innerText = "R$ ".concat(accountBalance);
+        accountBalanceDisplay.innerText = `R$ ${accountBalance}`;
     }
 }
 function isInvalidDate(dateCheck) {
