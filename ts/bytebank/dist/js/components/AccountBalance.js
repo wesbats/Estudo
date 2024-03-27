@@ -3,6 +3,6 @@ updateAccontBalanceDisplay();
 function updateAccontBalanceDisplay() {
     if (accountBank) {
         const accountBalance = accountBank.getAccountBalance();
-        accountBalanceDisplay.innerText = `R$ ${accountBalance}`;
+        accountBalanceDisplay.innerText = `R$ ${accountBalance.toFixed(2)}`;
     }
 }

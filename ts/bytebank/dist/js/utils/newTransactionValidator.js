@@ -19,8 +19,8 @@ function checkErrors(transactionRequest) {
     function checkValues(transaction) {
         let listErrors = [];
         let isInvalidType = true;
-        for (let key in TypeTransaction) {
-            if (TypeTransaction[key] === transaction.typeTransaction) {
+        for (let key in TypeTransactionRequest) {
+            if (TypeTransactionRequest[key] === transaction.typeTransaction) {
                 isInvalidType = false;
                 break;
             }

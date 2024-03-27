@@ -16,7 +16,6 @@ transactionForm.addEventListener("submit", (event) => {
         typeTransaction: TypeTransactionRequest[typeTransactionString],
         value: valueTransaction,
     };
-    console.log(transactionRequest);
     const errors = checkErrors(transactionRequest);
     if (errors != "") {
         const msgErrors = `Favor preencher ${errors} corretamente.`;

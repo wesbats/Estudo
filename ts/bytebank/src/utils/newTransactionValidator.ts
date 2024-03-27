@@ -5,7 +5,6 @@ function checkErrors(transactionRequest: TransactionRequest) {
   if (listErrors.length != 0) {
     listErrors.forEach(formatErrors);
 
-
     function formatErrors(value: string, index: number): void {
       if (index == 0) {
         errors = value;
@@ -24,8 +23,8 @@ function checkErrors(transactionRequest: TransactionRequest) {
   function checkValues(transaction: TransactionRequest): string[] {
     let listErrors: string[] = [];
     let isInvalidType = true;
-    for (let key in TypeTransaction) {
-      if (TypeTransaction[key] === transaction.typeTransaction) {
+    for (let key in TypeTransactionRequest) {
+      if (TypeTransactionRequest[key] === transaction.typeTransaction) {
         isInvalidType = false;
         break;
       }
