@@ -1,6 +1,4 @@
-const transactionForm = document.querySelector(
-  ".block-nova-transacao form"
-) as HTMLFormElement;
+const transactionForm = document.querySelector(".block-nova-transacao form") as HTMLFormElement;
 
 transactionForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -9,15 +7,11 @@ transactionForm.addEventListener("submit", (event) => {
     return;
   }
 
-  const inputDateTransactionForm = transactionForm.querySelector(
-    "#data"
-  ) as HTMLDataElement;
+  const inputDateTransactionForm = transactionForm.querySelector("#data") as HTMLDataElement;
   const inputTypeTransactionForm = transactionForm.querySelector(
     "#tipoTransacao"
   ) as HTMLSelectElement;
-  const inputValueTransactionForm = transactionForm.querySelector(
-    "#valor"
-  ) as HTMLInputElement;
+  const inputValueTransactionForm = transactionForm.querySelector("#valor") as HTMLInputElement;
 
   let dateTransaction: Date = new Date(inputDateTransactionForm?.value);
   let typeTransactionString: string = inputTypeTransactionForm?.value;

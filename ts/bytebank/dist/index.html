@@ -9,7 +9,9 @@
 
     <script src="js/models/Account.js" defer></script>
     <script src="js/models/TypeTransaction.js" defer></script>
+    <script src="js/models/DateFormat.js"></script>
     <script src="js/utils/newTransactionValidator.js" defer></script>
+    <script src="js/utils/formatter.js"></script>
     <script src="js/script.js" defer></script>
     <script src="js/components/DisplayUpdater.js" defer></script>
     <script src="js/components/NewTransaction.js" defer></script>
@@ -38,9 +40,7 @@
 
           <div class="flex">
             <div class="saldo-valor">
-              <strong>
-                Saldo <img src="images/olho.svg" alt="Mostrar saldo" />
-              </strong>
+              <strong> Saldo <img src="images/olho.svg" alt="Mostrar saldo" /> </strong>
               <div class="cc">
                 <span>Conta Corrente</span>
                 <span class="valor">R$ 2.500,00</span>
@@ -53,12 +53,7 @@
           <h2>Nova transação</h2>
           <form action="" method="post" novalidate>
             <div class="campo">
-              <select
-                name="tipoTransacao"
-                id="tipoTransacao"
-                class="campo-input"
-                required
-              >
+              <select name="tipoTransacao" id="tipoTransacao" class="campo-input" required>
                 <option value="">Selecione o tipo de transação</option>
                 <option value="deposit">Depósito</option>
                 <option value="transfer">Transferência</option>

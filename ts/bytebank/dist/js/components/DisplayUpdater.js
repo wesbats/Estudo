@@ -6,20 +6,12 @@ updateAccontBalanceDisplay();
 function updateAccontBalanceDisplay() {
     if (accountBank) {
         const accountBalance = accountBank.getAccountBalance();
-        accountBalanceDisplay.innerText = accountBalance.toLocaleString("pt-br", {
-            style: "currency",
-            currency: "BRL",
-        });
+        accountBalanceDisplay.innerText = formatCurrency(accountBalance);
     }
 }
 function updateDate() {
     const currentDay = new Date();
-    dateDisplay.innerText = currentDay.toLocaleDateString("pt-br", {
-        weekday: "long",
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-    });
+    dateDisplay.innerText = formatDate(currentDay, DateFormat.diaSemanaData);
 }
 function updateNameDisplay() {
     nameDisplay.innerText = accountBank.getNameOwner();
