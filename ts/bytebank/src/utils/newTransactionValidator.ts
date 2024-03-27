@@ -1,4 +1,4 @@
-function checkErrors(transactionRequest: TransactionRequest) {
+function checkErrors(transactionRequest: Transaction) {
   let listErrors: string[] = checkValues(transactionRequest);
   let errors: string = "";
 
@@ -20,16 +20,9 @@ function checkErrors(transactionRequest: TransactionRequest) {
 
   return errors;
 
-  function checkValues(transaction: TransactionRequest): string[] {
+  function checkValues(transaction: Transaction): string[] {
     let listErrors: string[] = [];
-    let isInvalidType = true;
-    for (let key in TypeTransactionRequest) {
-      if (TypeTransactionRequest[key] === transaction.typeTransaction) {
-        isInvalidType = false;
-        break;
-      }
-    }
-    if (isInvalidType) {
+    if (transaction.typeTransaction === undefined) {
       listErrors.push("Tipo de transação");
     }
     if (transaction.value == 0) {

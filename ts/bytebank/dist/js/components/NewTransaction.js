@@ -11,24 +11,19 @@ transactionForm.addEventListener("submit", (event) => {
     let dateTransaction = new Date(inputDateTransactionForm === null || inputDateTransactionForm === void 0 ? void 0 : inputDateTransactionForm.value);
     let typeTransactionString = inputTypeTransactionForm === null || inputTypeTransactionForm === void 0 ? void 0 : inputTypeTransactionForm.value;
     let valueTransaction = Number(inputValueTransactionForm === null || inputValueTransactionForm === void 0 ? void 0 : inputValueTransactionForm.value);
-    const transactionRequest = {
+    const newTransaction = {
         date: dateTransaction,
-        typeTransaction: TypeTransactionRequest[typeTransactionString],
+        typeTransaction: TypeTransaction[typeTransactionString],
         value: valueTransaction,
     };
-    const errors = checkErrors(transactionRequest);
+    const errors = checkErrors(newTransaction);
     if (errors != "") {
         const msgErrors = `Favor preencher ${errors} corretamente.`;
         alert(msgErrors);
         return;
     }
-    const newTransaction = {
-        date: transactionRequest.date,
-        typeTransaction: TypeTransaction[transactionRequest.typeTransaction],
-        value: transactionRequest.value,
-    };
     console.log(newTransaction);
-    switch (typeTransactionString) {
+    switch (newTransaction.typeTransaction) {
         case TypeTransaction.deposit:
             accountBank.accountBalanceAdd(valueTransaction);
             break;
