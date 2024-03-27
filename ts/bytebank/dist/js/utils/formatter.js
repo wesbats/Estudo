@@ -1,10 +1,11 @@
-function formatCurrency(valor) {
+import { DateFormat } from "../types/DateFormat.js";
+export function formatCurrency(valor) {
     return valor.toLocaleString("pt-br", {
         style: "currency",
         currency: "BRL",
     });
 }
-function formatDate(date, format = DateFormat.padrao) {
+export function formatDate(date, format = DateFormat.padrao) {
     switch (format) {
         case DateFormat.diaMes:
             return date.toLocaleString("pt-br", {

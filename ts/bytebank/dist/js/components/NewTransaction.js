@@ -1,3 +1,7 @@
+import { accountBank } from "../main.js";
+import { TypeTransaction } from "../types/TypeTransaction.js";
+import { updateAccontBalanceDisplay } from "./DisplayUpdater.js";
+import { checkErrors } from "../utils/newTransactionValidator.js";
 const transactionForm = document.querySelector(".block-nova-transacao form");
 transactionForm.addEventListener("submit", (event) => {
     event.preventDefault();

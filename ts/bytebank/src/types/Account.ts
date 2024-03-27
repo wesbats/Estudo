@@ -1,4 +1,4 @@
-class AccountBank {
+export class AccountBank {
   private nameOwner: string;
   private accountBalance: number;
 

@@ -1,4 +1,6 @@
-function checkErrors(transactionRequest: Transaction) {
+import { Transaction } from "../types/Transaction.js";
+
+export function checkErrors(transactionRequest: Transaction) {
   let listErrors: string[] = checkValues(transactionRequest);
   let errors: string = "";
 

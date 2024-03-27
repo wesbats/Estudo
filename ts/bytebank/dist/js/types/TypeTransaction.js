@@ -1,4 +1,4 @@
-var TypeTransaction;
+export var TypeTransaction;
 (function (TypeTransaction) {
     TypeTransaction["deposit"] = "Dep\u00F3sito";
     TypeTransaction["transfer"] = "Transfer\u00EAncia";

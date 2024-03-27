@@ -1,4 +1,4 @@
-function checkErrors(transactionRequest) {
+export function checkErrors(transactionRequest) {
     let listErrors = checkValues(transactionRequest);
     let errors = "";
     if (listErrors.length != 0) {

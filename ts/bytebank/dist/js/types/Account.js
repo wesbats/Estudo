@@ -1,4 +1,4 @@
-class AccountBank {
+export class AccountBank {
     constructor(accountBalanceStarter, name) {
         this.accountBalance = accountBalanceStarter;
         this.nameOwner = name;
