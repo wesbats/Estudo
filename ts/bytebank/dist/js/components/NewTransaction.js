@@ -25,13 +25,13 @@ transactionForm.addEventListener("submit", (event) => {
     console.log(newTransaction);
     switch (newTransaction.typeTransaction) {
         case TypeTransaction.deposit:
-            accountBank.accountBalanceAdd(valueTransaction);
+            accountBank.accountBalanceAdd(newTransaction.value);
             break;
         case TypeTransaction.transfer:
-            accountBank.accountBalanceRemove(valueTransaction);
+            accountBank.accountBalanceRemove(newTransaction.value);
             break;
         case TypeTransaction.paymentSlip:
-            accountBank.accountBalanceRemove(valueTransaction);
+            accountBank.accountBalanceRemove(newTransaction.value);
             break;
     }
     updateAccontBalanceDisplay();
