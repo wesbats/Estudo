@@ -14,10 +14,7 @@ export class AccountBank {
     return this.nameOwner;
   }
 
-  accountBalanceAdd(amountMoney: number): void {
+  accountBalanceUpdate(amountMoney: number): void {
     this.accountBalance += amountMoney;
-  }
-  accountBalanceRemove(amountMoney: number): void {
-    this.accountBalance -= amountMoney;
   }
 }

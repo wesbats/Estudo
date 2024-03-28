@@ -9,10 +9,7 @@ export class AccountBank {
     getNameOwner() {
         return this.nameOwner;
     }
-    accountBalanceAdd(amountMoney) {
+    accountBalanceUpdate(amountMoney) {
         this.accountBalance += amountMoney;
-    }
-    accountBalanceRemove(amountMoney) {
-        this.accountBalance -= amountMoney;
     }
 }
