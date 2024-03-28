@@ -1,18 +1,17 @@
-import { updateAccontBalanceDisplay } from "../components/DisplayUpdater.js";
+import { startDisplay, updateAccontBalanceDisplay } from "../components/DisplayUpdater.js";
 import repository from "../data/repository.js";
-import AccountBank from "../types/Account.js";
 import Transaction from "../types/Transaction.js";
 import TypeTransaction from "../types/TypeTransaction.js";
 import checkErrors from "../utils/transactionValidator.js";
 
 class AccountService {
-  private repo: repository;
+  private repo: repository = new repository();
   private accountUser = () => {
     return this.repo.accountUser;
   };
 
   constructor() {
-    this.repo = new repository();
+    startDisplay(this.accountUser().getAccountBalance(), this.getDate(), this.accountUser().getNameOwner())
   }
 
   accountIsValid(): boolean {
@@ -56,7 +55,7 @@ class AccountService {
     this.accountUser().addTransaction(newTransaction);
     this.repo.save();
     console.log(this.accountUser().getTransactions());
-    updateAccontBalanceDisplay();
+    updateAccontBalanceDisplay(this.accountUser().getAccountBalance());
   }
 }
 
