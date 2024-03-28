@@ -1,6 +1,6 @@
-import { Transaction } from "../types/Transaction.js";
+import Transaction from "../types/Transaction.js";
 
-export function checkErrors(transactionRequest: Transaction) {
+function checkErrors(transactionRequest: Transaction) {
   let listErrors: string[] = checkValues(transactionRequest);
   let errors: string = "";
 
@@ -29,6 +29,11 @@ export function checkErrors(transactionRequest: Transaction) {
     }
     if (transaction.value == 0) {
       listErrors.push("Valor");
+    } else {
+      const decimalPart = String(transaction.value).split(".")[1];
+      if (decimalPart?.length > 2) {
+        listErrors.push("Valor");
+      }
     }
     if (isInvalidDate(transaction.date)) {
       listErrors.push("Data");
@@ -40,3 +45,5 @@ export function checkErrors(transactionRequest: Transaction) {
     }
   }
 }
+
+export default checkErrors;

@@ -1,4 +1,4 @@
-import { DateFormat } from "../types/DateFormat.js";
+import DateFormat from "../types/DateFormat.js";
 
 export function formatCurrency(valor: number): string {
   return valor.toLocaleString("pt-br", {

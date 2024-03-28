@@ -1,5 +1,6 @@
 export class AccountBank {
     constructor(accountBalanceStarter, name) {
+        this.listTransactions = [];
         this.accountBalance = accountBalanceStarter;
         this.nameOwner = name;
     }
@@ -9,7 +10,12 @@ export class AccountBank {
     getNameOwner() {
         return this.nameOwner;
     }
-    accountBalanceUpdate(amountMoney) {
-        this.accountBalance += amountMoney;
+    addTransaction(transaction) {
+        this.listTransactions.push(transaction);
+        this.accountBalance += transaction.value;
+    }
+    getTransactions() {
+        return this.listTransactions;
     }
 }
+export default AccountBank;

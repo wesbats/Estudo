@@ -3,3 +3,5 @@ export enum TypeTransaction {
   transfer = "Transferência",
   paymentSlip = "Pagamento de Boleto",
 }
+
+export default TypeTransaction;

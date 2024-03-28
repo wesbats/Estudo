@@ -1,24 +1,59 @@
 import { updateAccontBalanceDisplay } from "../components/DisplayUpdater.js";
-import { AccountBank } from "../types/Account.js";
-const accountUser: AccountBank = new AccountBank(3000, "Weslley");
+import AccountBank from "../types/Account.js";
+import Transaction from "../types/Transaction.js";
+import TypeTransaction from "../types/TypeTransaction.js";
+import checkErrors from "../utils/transactionValidator.js";
 
-export default class AccountService {
-  constructor() {}
+//repository
+export const repo = {
+  accountUser: new AccountBank(3000, "Weslley"),
+  date: new Date(),
+};
 
-  accountIsValid(): boolean {
-    return accountUser != undefined ? true : false;
+class AccountService {
+  private accountUser;
+
+  constructor() {
+    this.accountUser = repo.accountUser;
   }
 
-  atualizaSaldo(value: number): void {
-    accountUser.accountBalanceUpdate(value);
-    updateAccontBalanceDisplay();
+  accountIsValid(): boolean {
+    return this.accountUser != undefined ? true : false;
   }
 
   getAccountBalance(): number {
-    return accountUser.getAccountBalance();
+    return this.accountUser.getAccountBalance();
   }
 
   getNameOwner(): string {
-    return accountUser.getNameOwner();
+    return this.accountUser.getNameOwner();
+  }
+
+  addTransaction(transactionRequest: Transaction): void {
+    const errors = checkErrors(transactionRequest);
+    if (errors != "") {
+      const msgErrors: string = `Favor preencher ${errors} corretamente.`;
+      alert(msgErrors);
+      return;
+    }
+
+    if (
+      transactionRequest.typeTransaction == TypeTransaction.transfer ||
+      transactionRequest.typeTransaction == TypeTransaction.paymentSlip
+    ) {
+      transactionRequest.value *= -1;
+    }
+
+    const newTransaction: Transaction = {
+      date: transactionRequest.date,
+      typeTransaction: transactionRequest.typeTransaction,
+      value: transactionRequest.value,
+    };
+
+    this.accountUser.addTransaction(newTransaction);
+    console.log(this.accountUser.getTransactions());
+    updateAccontBalanceDisplay();
   }
 }
+
+export default AccountService;

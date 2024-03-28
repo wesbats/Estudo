@@ -3,3 +3,5 @@ export enum DateFormat {
   diaSemanaData = "DiaDaSemana, DD/MM/AAA",
   diaMes = "DD/MM",
 }
+
+export default DateFormat;

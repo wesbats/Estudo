@@ -4,3 +4,4 @@ export var TypeTransaction;
     TypeTransaction["transfer"] = "Transfer\u00EAncia";
     TypeTransaction["paymentSlip"] = "Pagamento de Boleto";
 })(TypeTransaction || (TypeTransaction = {}));
+export default TypeTransaction;

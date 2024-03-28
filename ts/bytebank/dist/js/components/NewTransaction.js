@@ -1,6 +1,5 @@
 import AccountService from "../service/AccountService.js";
-import { TypeTransaction } from "../types/TypeTransaction.js";
-import { checkErrors } from "../utils/newTransactionValidator.js";
+import TypeTransaction from "../types/TypeTransaction.js";
 const transactionForm = document.querySelector(".block-nova-transacao form");
 const accountService = new AccountService();
 transactionForm.addEventListener("submit", (event) => {
@@ -16,26 +15,10 @@ transactionForm.addEventListener("submit", (event) => {
     let typeTransactionString = inputTypeTransactionForm === null || inputTypeTransactionForm === void 0 ? void 0 : inputTypeTransactionForm.value;
     let valueTransaction = Number(inputValueTransactionForm === null || inputValueTransactionForm === void 0 ? void 0 : inputValueTransactionForm.value);
     transactionForm.reset();
-    let transactionRequest = {
+    const transactionRequest = {
         date: dateTransaction,
         typeTransaction: TypeTransaction[typeTransactionString],
         value: valueTransaction,
     };
-    const errors = checkErrors(transactionRequest);
-    if (errors != "") {
-        const msgErrors = `Favor preencher ${errors} corretamente.`;
-        alert(msgErrors);
-        return;
-    }
-    if (transactionRequest.typeTransaction == TypeTransaction.transfer ||
-        transactionRequest.typeTransaction == TypeTransaction.paymentSlip) {
-        transactionRequest.value *= -1;
-    }
-    const newTransaction = {
-        date: transactionRequest.date,
-        typeTransaction: transactionRequest.typeTransaction,
-        value: transactionRequest.value,
-    };
-    accountService.atualizaSaldo(newTransaction.value);
-    console.log(newTransaction);
+    accountService.addTransaction(transactionRequest);
 });

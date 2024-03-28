@@ -4,3 +4,4 @@ export var DateFormat;
     DateFormat["diaSemanaData"] = "DiaDaSemana, DD/MM/AAA";
     DateFormat["diaMes"] = "DD/MM";
 })(DateFormat || (DateFormat = {}));
+export default DateFormat;
