@@ -1,9 +1,13 @@
 import AccountBank from "../types/Account.js";
-const repository = {
-    accountUser: getAccountUserFromLocalStorage(),
-    date: new Date(),
-    save: saveAccountUser(),
-};
+class repository {
+    constructor() {
+        this.date = new Date();
+        this.accountUser = getAccountUserFromLocalStorage();
+    }
+    save() {
+        localStorage.setItem("Account", JSON.stringify(this.accountUser));
+    }
+}
 function getAccountUserFromLocalStorage() {
     const accountLocalStorageJson = JSON.parse(localStorage.getItem("Account"), (key, value) => {
         if (key == "listTransactions") {
@@ -21,8 +25,5 @@ function getAccountUserFromLocalStorage() {
         const newAccount = new AccountBank(prompt("Digite seu nome:"));
         return newAccount;
     }
-}
-function saveAccountUser() {
-    localStorage.setItem("Account", JSON.stringify(repository.accountUser));
 }
 export default repository;

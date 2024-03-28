@@ -6,22 +6,28 @@ import TypeTransaction from "../types/TypeTransaction.js";
 import checkErrors from "../utils/transactionValidator.js";
 
 class AccountService {
-  private accountUser: AccountBank;
+  private repo: repository;
+  private accountUser = () => {
+    return this.repo.accountUser;
+  };
 
   constructor() {
-    this.accountUser = repository.accountUser;
+    this.repo = new repository();
   }
 
   accountIsValid(): boolean {
-    return this.accountUser != undefined ? true : false;
+    return this.accountUser() != undefined ? true : false;
+  }
+  getDate(): Date {
+    return this.repo.date;
   }
 
   getAccountBalance(): number {
-    return this.accountUser.getAccountBalance();
+    return this.accountUser().getAccountBalance();
   }
 
   getNameOwner(): string {
-    return this.accountUser.getNameOwner();
+    return this.accountUser().getNameOwner();
   }
 
   addTransaction(transactionRequest: Transaction): void {
@@ -47,9 +53,9 @@ class AccountService {
       value: transactionRequest.value,
     };
 
-    this.accountUser.addTransaction(newTransaction);
-    repository.save;
-    console.log(this.accountUser.getTransactions());
+    this.accountUser().addTransaction(newTransaction);
+    this.repo.save();
+    console.log(this.accountUser().getTransactions());
     updateAccontBalanceDisplay();
   }
 }

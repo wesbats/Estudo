@@ -4,16 +4,22 @@ import TypeTransaction from "../types/TypeTransaction.js";
 import checkErrors from "../utils/transactionValidator.js";
 class AccountService {
     constructor() {
-        this.accountUser = repository.accountUser;
+        this.accountUser = () => {
+            return this.repo.accountUser;
+        };
+        this.repo = new repository();
     }
     accountIsValid() {
-        return this.accountUser != undefined ? true : false;
+        return this.accountUser() != undefined ? true : false;
+    }
+    getDate() {
+        return this.repo.date;
     }
     getAccountBalance() {
-        return this.accountUser.getAccountBalance();
+        return this.accountUser().getAccountBalance();
     }
     getNameOwner() {
-        return this.accountUser.getNameOwner();
+        return this.accountUser().getNameOwner();
     }
     addTransaction(transactionRequest) {
         const errors = checkErrors(transactionRequest);
@@ -33,9 +39,9 @@ class AccountService {
             typeTransaction: transactionRequest.typeTransaction,
             value: transactionRequest.value,
         };
-        this.accountUser.addTransaction(newTransaction);
-        repository.save;
-        console.log(this.accountUser.getTransactions());
+        this.accountUser().addTransaction(newTransaction);
+        this.repo.save();
+        console.log(this.accountUser().getTransactions());
         updateAccontBalanceDisplay();
     }
 }

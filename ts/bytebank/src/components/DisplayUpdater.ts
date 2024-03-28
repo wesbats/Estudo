@@ -1,4 +1,3 @@
-import repository from "../data/repository.js";
 import AccountService from "../service/AccountService.js";
 import DateFormat from "../types/DateFormat.js";
 import { formatCurrency, formatDate } from "../utils/formatter.js";
@@ -13,7 +12,7 @@ const nameAltImg = divUser.querySelector("img") as HTMLImageElement;
 const accountService: AccountService = new AccountService();
 
 function updateDate() {
-  dateDisplay.innerText = formatDate(repository.date, DateFormat.diaSemanaData);
+  dateDisplay.innerText = formatDate(accountService.getDate(), DateFormat.diaSemanaData);
 }
 function updateNameDisplay() {
   const name: string = accountService.getNameOwner();
@@ -25,7 +24,9 @@ function updateNameDisplay() {
 export function updateAccontBalanceDisplay(): void {
   if (accountBalanceDisplay && accountService.accountIsValid()) {
     accountBalanceDisplay.innerText = formatCurrency(accountService.getAccountBalance());
+    console.log("oi");
   }
+  console.log("tchau");
 }
 export function startDisplay() {
   updateAccontBalanceDisplay();
