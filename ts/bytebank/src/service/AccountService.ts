@@ -1,20 +1,15 @@
 import { updateAccontBalanceDisplay } from "../components/DisplayUpdater.js";
+import repository from "../data/repository.js";
 import AccountBank from "../types/Account.js";
 import Transaction from "../types/Transaction.js";
 import TypeTransaction from "../types/TypeTransaction.js";
 import checkErrors from "../utils/transactionValidator.js";
 
-//repository
-export const repo = {
-  accountUser: new AccountBank(3000, "Weslley"),
-  date: new Date(),
-};
-
 class AccountService {
-  private accountUser;
+  private accountUser: AccountBank;
 
   constructor() {
-    this.accountUser = repo.accountUser;
+    this.accountUser = repository.accountUser;
   }
 
   accountIsValid(): boolean {
@@ -32,7 +27,7 @@ class AccountService {
   addTransaction(transactionRequest: Transaction): void {
     const errors = checkErrors(transactionRequest);
     if (errors != "") {
-      const msgErrors: string = `Favor preencher campos ${errors} corretamente.`;
+      const msgErrors: string = `Favor preencher ${errors} corretamente.`;
       throw new Error(msgErrors);
     }
 
@@ -53,6 +48,7 @@ class AccountService {
     };
 
     this.accountUser.addTransaction(newTransaction);
+    repository.save;
     console.log(this.accountUser.getTransactions());
     updateAccontBalanceDisplay();
   }

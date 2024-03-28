@@ -5,9 +5,9 @@ export class AccountBank {
   private accountBalance: number;
   private listTransactions: Transaction[] = [];
 
-  constructor(accountBalanceStarter: number, name: string) {
-    this.accountBalance = accountBalanceStarter;
+  constructor(name: string, accountBalance: number = 0) {
     this.nameOwner = name;
+    this.accountBalance = accountBalance;
   }
 
   getAccountBalance(): number {

@@ -1,15 +1,10 @@
 import { updateAccontBalanceDisplay } from "../components/DisplayUpdater.js";
-import AccountBank from "../types/Account.js";
+import repository from "../data/repository.js";
 import TypeTransaction from "../types/TypeTransaction.js";
 import checkErrors from "../utils/transactionValidator.js";
-//repository
-export const repo = {
-    accountUser: new AccountBank(3000, "Weslley"),
-    date: new Date(),
-};
 class AccountService {
     constructor() {
-        this.accountUser = repo.accountUser;
+        this.accountUser = repository.accountUser;
     }
     accountIsValid() {
         return this.accountUser != undefined ? true : false;
@@ -23,7 +18,7 @@ class AccountService {
     addTransaction(transactionRequest) {
         const errors = checkErrors(transactionRequest);
         if (errors != "") {
-            const msgErrors = `Favor preencher campos ${errors} corretamente.`;
+            const msgErrors = `Favor preencher ${errors} corretamente.`;
             throw new Error(msgErrors);
         }
         if (transactionRequest.typeTransaction == TypeTransaction.transfer ||
@@ -39,6 +34,7 @@ class AccountService {
             value: transactionRequest.value,
         };
         this.accountUser.addTransaction(newTransaction);
+        repository.save;
         console.log(this.accountUser.getTransactions());
         updateAccontBalanceDisplay();
     }
