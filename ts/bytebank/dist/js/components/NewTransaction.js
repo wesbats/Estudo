@@ -14,11 +14,16 @@ transactionForm.addEventListener("submit", (event) => {
     let dateTransaction = new Date(inputDateTransactionForm === null || inputDateTransactionForm === void 0 ? void 0 : inputDateTransactionForm.value);
     let typeTransactionString = inputTypeTransactionForm === null || inputTypeTransactionForm === void 0 ? void 0 : inputTypeTransactionForm.value;
     let valueTransaction = Number(inputValueTransactionForm === null || inputValueTransactionForm === void 0 ? void 0 : inputValueTransactionForm.value);
-    transactionForm.reset();
     const transactionRequest = {
         date: dateTransaction,
         typeTransaction: TypeTransaction[typeTransactionString],
         value: valueTransaction,
     };
-    accountService.addTransaction(transactionRequest);
+    try {
+        accountService.addTransaction(transactionRequest);
+        transactionForm.reset();
+    }
+    catch (error) {
+        alert(error.message);
+    }
 });

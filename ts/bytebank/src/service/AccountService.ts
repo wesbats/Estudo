@@ -32,15 +32,17 @@ class AccountService {
   addTransaction(transactionRequest: Transaction): void {
     const errors = checkErrors(transactionRequest);
     if (errors != "") {
-      const msgErrors: string = `Favor preencher ${errors} corretamente.`;
-      alert(msgErrors);
-      return;
+      const msgErrors: string = `Favor preencher campos ${errors} corretamente.`;
+      throw new Error(msgErrors);
     }
 
     if (
       transactionRequest.typeTransaction == TypeTransaction.transfer ||
       transactionRequest.typeTransaction == TypeTransaction.paymentSlip
     ) {
+      if (transactionRequest.value > this.getAccountBalance()) {
+        throw new Error("Saldo para operação insulficiente");
+      }
       transactionRequest.value *= -1;
     }
 
