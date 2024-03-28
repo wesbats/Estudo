@@ -1,4 +1,4 @@
-import { AccountService } from "../service/AccountService.js";
+import AccountService from "../service/AccountService.js";
 import { DateFormat } from "../types/DateFormat.js";
 import { formatCurrency, formatDate } from "../utils/formatter.js";
 

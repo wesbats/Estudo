@@ -1,7 +1,7 @@
+import AccountService from "../service/AccountService.js";
 import { Transaction } from "../types/Transaction.js";
 import { TypeTransaction } from "../types/TypeTransaction.js";
 import { checkErrors } from "../utils/newTransactionValidator.js";
-import { AccountService } from "../service/AccountService.js";
 
 const transactionForm = document.querySelector(".block-nova-transacao form") as HTMLFormElement;
 const accountService: AccountService = new AccountService();

@@ -1,6 +1,6 @@
+import AccountService from "../service/AccountService.js";
 import { TypeTransaction } from "../types/TypeTransaction.js";
 import { checkErrors } from "../utils/newTransactionValidator.js";
-import { AccountService } from "../service/AccountService.js";
 const transactionForm = document.querySelector(".block-nova-transacao form");
 const accountService = new AccountService();
 transactionForm.addEventListener("submit", (event) => {
