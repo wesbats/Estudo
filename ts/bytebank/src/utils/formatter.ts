@@ -15,6 +15,12 @@ export function formatDate(date: Date, format: DateFormat = DateFormat.padrao): 
         month: "2-digit",
       });
       break;
+    case DateFormat.mesAno:
+      return date.toLocaleString("pt-br", {
+        month: "2-digit",
+        year: "2-digit",
+      });
+      break;
     case DateFormat.diaSemanaData:
       return date.toLocaleString("pt-br", {
         weekday: "long",

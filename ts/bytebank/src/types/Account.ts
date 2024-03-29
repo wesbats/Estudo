@@ -1,9 +1,11 @@
-import Transaction from "./Transaction";
+import { formatDate } from "../utils/formatter.js";
+import DateFormat from "./DateFormat.js";
+import Transaction from "./Transaction.js";
 
 export class AccountBank {
   private nameOwner: string;
   private accountBalance: number;
-  private listTransactions: Transaction[] = [];
+  private listTransactions = {} as Dictionary<Transaction[]>;
 
   constructor(name: string, accountBalance: number = 0) {
     this.nameOwner = name;
@@ -18,10 +20,19 @@ export class AccountBank {
   }
 
   addTransaction(transaction: Transaction): void {
-    this.listTransactions.push(transaction);
+    const date = formatDate(transaction.date, DateFormat.mesAno);
+    const key = this.listTransactions[date];
+    if (key == undefined) {
+      this.listTransactions[date] = [transaction];
+    } else {
+      this.listTransactions[date].push(transaction);
+    }
+    this.listTransactions.array.forEach((element) => {
+      console.log(element);
+    });
     this.accountBalance += transaction.value;
   }
-  getTransactions(): Transaction[] {
+  getTransactions(): Dictionary<Transaction[]> {
     return this.listTransactions;
   }
 }

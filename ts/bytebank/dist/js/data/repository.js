@@ -9,20 +9,13 @@ class repository {
     }
 }
 function getAccountUserFromLocalStorage() {
-    const accountLocalStorageJson = JSON.parse(localStorage.getItem("Account"), (key, value) => {
-        if (key == "listTransactions") {
-            value.forEach((transaction) => {
-                transaction.date = new Date(transaction.date);
-            });
-        }
-        return value;
-    });
+    const accountLocalStorageJson = JSON.parse(localStorage.getItem("Account"));
     if (accountLocalStorageJson) {
         const accountLocalStorage = Object.setPrototypeOf(accountLocalStorageJson, AccountBank.prototype);
         return accountLocalStorage;
     }
     else {
-        const newAccount = new AccountBank(prompt("Digite seu nome:"));
+        const newAccount = new AccountBank(prompt("Digite seu nome: \n*Essa informação não pode ser alterada."));
         return newAccount;
     }
 }

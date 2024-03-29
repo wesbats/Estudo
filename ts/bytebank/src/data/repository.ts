@@ -14,19 +14,14 @@ class repository {
 }
 
 function getAccountUserFromLocalStorage(): AccountBank {
-  const accountLocalStorageJson: string = JSON.parse(localStorage.getItem("Account"), (key: string, value) => {
-    if (key == "listTransactions") {
-      value.forEach((transaction) => {
-        transaction.date = new Date(transaction.date);
-      });
-    }
-    return value;
-  });
+  const accountLocalStorageJson: string = JSON.parse(localStorage.getItem("Account"));
   if (accountLocalStorageJson) {
     const accountLocalStorage: AccountBank = Object.setPrototypeOf(accountLocalStorageJson, AccountBank.prototype);
     return accountLocalStorage;
   } else {
-    const newAccount: AccountBank = new AccountBank(prompt("Digite seu nome:"));
+    const newAccount: AccountBank = new AccountBank(
+      prompt("Digite seu nome: \n*Essa informação não pode ser alterada.")
+    );
     return newAccount;
   }
 }
