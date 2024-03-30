@@ -9,7 +9,14 @@ class repository {
     }
 }
 function getAccountUserFromLocalStorage() {
-    const accountLocalStorageJson = JSON.parse(localStorage.getItem("Account"));
+    const accountLocalStorageJson = JSON.parse(localStorage.getItem("Account"), (key, value) => {
+        if (key == "listTransactions") {
+            value.forEach((transaction) => {
+                transaction.date = new Date(transaction.date);
+            });
+        }
+        return value;
+    });
     if (accountLocalStorageJson) {
         const accountLocalStorage = Object.setPrototypeOf(accountLocalStorageJson, AccountBank.prototype);
         return accountLocalStorage;

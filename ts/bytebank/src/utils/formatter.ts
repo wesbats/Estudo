@@ -18,7 +18,7 @@ export function formatDate(date: Date, format: DateFormat = DateFormat.padrao): 
     case DateFormat.mesAno:
       return date.toLocaleString("pt-br", {
         month: "2-digit",
-        year: "2-digit",
+        year: "numeric",
       });
       break;
     case DateFormat.diaSemanaData:

@@ -2,7 +2,7 @@ export enum DateFormat {
   padrao = "DD/MM/AAAA",
   diaSemanaData = "DiaDaSemana, DD/MM/AAA",
   diaMes = "DD/MM",
-  mesAno = "MM/AA",
+  mesAno = "MM/AAAA",
 }
 
 export default DateFormat;

@@ -11,7 +11,7 @@ class AccountService {
   };
 
   constructor() {
-    startDisplay(this.accountUser().getAccountBalance(), this.getDate(), this.accountUser().getNameOwner())
+    startDisplay(this.accountUser().getAccountBalance(), this.getDate(), this.accountUser().getNameOwner());
   }
 
   accountIsValid(): boolean {
@@ -54,7 +54,7 @@ class AccountService {
 
     this.accountUser().addTransaction(newTransaction);
     this.repo.save();
-    console.log(this.accountUser().getTransactions());
+    console.log(this.accountUser().getGroupTransactions());
     updateAccontBalanceDisplay(this.accountUser().getAccountBalance());
   }
 }
