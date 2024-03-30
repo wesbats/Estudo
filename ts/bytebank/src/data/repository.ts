@@ -27,7 +27,7 @@ function getAccountUserFromLocalStorage(): AccountBank {
     return accountLocalStorage;
   } else {
     let name: string = "";
-    while (name == "") {
+    while (name == "" || name == null) {
       name = prompt("Digite seu nome: \n*Essa informação não pode ser alterada.");
     }
     const newAccount: AccountBank = new AccountBank(name);
