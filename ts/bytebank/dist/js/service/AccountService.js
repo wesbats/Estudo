@@ -1,4 +1,4 @@
-import { startDisplay, updateAccontBalanceDisplay } from "../components/DisplayUpdater.js";
+import Display from "../components/DisplayUpdater.js";
 import repository from "../data/repository.js";
 import TypeTransaction from "../types/TypeTransaction.js";
 import checkErrors from "../utils/transactionValidator.js";
@@ -8,7 +8,7 @@ class AccountService {
         this.accountUser = () => {
             return this.repo.accountUser;
         };
-        startDisplay(this.accountUser().getAccountBalance(), this.getDate(), this.accountUser().getNameOwner());
+        Display.start(this.accountUser().getAccountBalance(), this.getDate(), this.accountUser().getNameOwner(), this.accountUser().getGroupTransactions());
     }
     accountIsValid() {
         return this.accountUser() != undefined ? true : false;
@@ -43,7 +43,7 @@ class AccountService {
         this.accountUser().addTransaction(newTransaction);
         this.repo.save();
         console.log(this.accountUser().getGroupTransactions());
-        updateAccontBalanceDisplay(this.accountUser().getAccountBalance());
+        Display.update(this.accountUser().getAccountBalance(), this.accountUser().getGroupTransactions());
     }
 }
 export default AccountService;

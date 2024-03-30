@@ -15,7 +15,7 @@ export function formatDate(date, format = DateFormat.padrao) {
             break;
         case DateFormat.mesAno:
             return date.toLocaleString("pt-br", {
-                month: "2-digit",
+                month: "long",
                 year: "numeric",
             });
             break;

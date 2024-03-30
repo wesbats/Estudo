@@ -26,9 +26,11 @@ function getAccountUserFromLocalStorage(): AccountBank {
     const accountLocalStorage: AccountBank = Object.setPrototypeOf(accountLocalStorageJson, AccountBank.prototype);
     return accountLocalStorage;
   } else {
-    const newAccount: AccountBank = new AccountBank(
-      prompt("Digite seu nome: \n*Essa informação não pode ser alterada.")
-    );
+    let name: string = "";
+    while (name == "") {
+      name = prompt("Digite seu nome: \n*Essa informação não pode ser alterada.");
+    }
+    const newAccount: AccountBank = new AccountBank(name);
     return newAccount;
   }
 }

@@ -16,7 +16,7 @@ transactionForm.addEventListener("submit", (event) => {
   const inputTypeTransactionForm = transactionForm.querySelector("#tipoTransacao") as HTMLSelectElement;
   const inputValueTransactionForm = transactionForm.querySelector("#valor") as HTMLInputElement;
 
-  let dateTransaction: Date = new Date(inputDateTransactionForm?.value);
+  let dateTransaction: Date = new Date(inputDateTransactionForm?.value + " 00:00:00");
   let typeTransactionString: string = inputTypeTransactionForm?.value;
   let valueTransaction: number = Number(inputValueTransactionForm?.value);
 

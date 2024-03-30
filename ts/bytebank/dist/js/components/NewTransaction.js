@@ -11,7 +11,7 @@ transactionForm.addEventListener("submit", (event) => {
     const inputDateTransactionForm = transactionForm.querySelector("#data");
     const inputTypeTransactionForm = transactionForm.querySelector("#tipoTransacao");
     const inputValueTransactionForm = transactionForm.querySelector("#valor");
-    let dateTransaction = new Date(inputDateTransactionForm === null || inputDateTransactionForm === void 0 ? void 0 : inputDateTransactionForm.value);
+    let dateTransaction = new Date((inputDateTransactionForm === null || inputDateTransactionForm === void 0 ? void 0 : inputDateTransactionForm.value) + " 00:00:00");
     let typeTransactionString = inputTypeTransactionForm === null || inputTypeTransactionForm === void 0 ? void 0 : inputTypeTransactionForm.value;
     let valueTransaction = Number(inputValueTransactionForm === null || inputValueTransactionForm === void 0 ? void 0 : inputValueTransactionForm.value);
     const transactionRequest = {

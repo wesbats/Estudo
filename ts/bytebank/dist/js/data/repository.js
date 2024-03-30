@@ -22,7 +22,11 @@ function getAccountUserFromLocalStorage() {
         return accountLocalStorage;
     }
     else {
-        const newAccount = new AccountBank(prompt("Digite seu nome: \n*Essa informação não pode ser alterada."));
+        let name = "";
+        while (name == "") {
+            name = prompt("Digite seu nome: \n*Essa informação não pode ser alterada.");
+        }
+        const newAccount = new AccountBank(name);
         return newAccount;
     }
 }
