@@ -73,7 +73,7 @@ namespace LinqJoin
 
             Console.WriteLine("Type of query: " + query.GetType());
             var firstItem = query.FirstOrDefault();
-            Console.WriteLine("Type of item on query: " + firstItem?.GetType());
+            Console.WriteLine("Type of item in query: " + firstItem?.GetType());
         }
 
     }
